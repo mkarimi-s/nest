@@ -6,8 +6,14 @@ import { Book} from "./entity/book.entity";
 export class BooksService {
   private readonly books: Book[] = [];
 
-  getAll(): any {
-    return this.books;
+  getAll(name?: string): any {
+    let results = [];
+    if(name) {
+      results = this.books.filter(user => user.name === name);
+    }else {
+      results = this.books;
+    }
+    return results;
   }
 
   createBook(body: BooksDto): any {
